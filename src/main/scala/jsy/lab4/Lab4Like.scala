@@ -117,7 +117,7 @@ trait Lab4Like { a: JsyApplication =>
       println("# Stepping ...".format(expr))
     }
 
-    handle() {
+    handle(()) {
       val v = iterateStep(expr)
       println(pretty(v))
     }

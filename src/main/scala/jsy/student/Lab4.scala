@@ -33,7 +33,7 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
    * is a Scala expression that throws the exception scala.NotImplementedError.
    */
   
-  /* Collections and Higher-Order Functions */
+  /*** Collections and Higher-Order Functions ***/
   
   /* Lists */
   
@@ -76,7 +76,45 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
     b
   }
 
-  /* Type Inference */
+  /*** Rename bound variables in e ***/
+
+  def rename(e: Expr)(fresh: String => String): Expr = {
+    def ren(env: Map[String,String], e: Expr): Expr = {
+      e match {
+        case N(_) | B(_) | Undefined | S(_) => e
+        case Print(e1) => Print(ren(env, e1))
+
+        case Unary(uop, e1) => ???
+        case Binary(bop, e1, e2) => ???
+        case If(e1, e2, e3) => ???
+
+        case Var(y) => ???
+
+        case Decl(mode, y, e1, e2) =>
+          val yp = fresh(y)
+          ???
+
+        case Function(p, params, tann, e1) => {
+          val (pp, envp): (Option[String], Map[String,String]) = p match {
+            case None => ???
+            case Some(x) => ???
+          }
+          val (paramsp, envpp) = params.foldRight( (Nil: List[(String,MTyp)], envp) ) {
+            ???
+          }
+          ???
+        }
+
+        case Call(e1, args) => ???
+
+        case Obj(fields) => ???
+        case GetField(e1, f) => ???
+      }
+    }
+    ren(empty, e)
+  }
+
+  /*** Type Inference ***/
 
   // While this helper function is completely given, this function is
   // worth studying to see how library methods are used.
@@ -96,7 +134,6 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
       case Undefined => ???
       case S(_) => ???
       case Var(x) => ???
-      case Decl(mode, x, e1, e2) => ???
       case Unary(Neg, e1) => typeof(env, e1) match {
         case TNumber => TNumber
         case tgot => err(tgot, e1)
@@ -117,6 +154,12 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
         ???
       case If(e1, e2, e3) =>
         ???
+
+      case Obj(fields) => ???
+      case GetField(e1, f) => ???
+
+      case Decl(m, x, e1, e2) => ???
+
       case Function(p, params, tann, e1) => {
         // Bind to env1 an environment that extends env with an appropriate binding if
         // the function is potentially recursive.
@@ -135,17 +178,15 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
         case TFunction(params, tret) if (params.length == args.length) =>
           (params zip args).foreach {
             ???
-          };
+          }
           tret
         case tgot => err(tgot, e1)
       }
-      case Obj(fields) => ???
-      case GetField(e1, f) => ???
+
     }
   }
   
-  
-  /* Small-Step Interpreter */
+  /*** Small-Step Interpreter ***/
 
   /*
    * Helper function that implements the semantics of inequality
@@ -175,7 +216,7 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
   def substitute(e: Expr, esub: Expr, x: String): Expr = {
     def subst(e: Expr): Expr = e match {
       case N(_) | B(_) | Undefined | S(_) => e
-      case Print(e1) => Print(substitute(e1, esub, x))
+      case Print(e1) => Print(subst(e1))
         /***** Cases from Lab 3 */
       case Unary(uop, e1) => ???
       case Binary(bop, e1, e2) => ???
@@ -193,44 +234,8 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
 
     val fvs = freeVars(???)
     def fresh(x: String): String = if (???) fresh(x + "$") else x
-    subst(???)
-  }
 
-  /* Rename bound variables in e */
-  def rename(e: Expr)(fresh: String => String): Expr = {
-    def ren(env: Map[String,String], e: Expr): Expr = {
-      e match {
-        case N(_) | B(_) | Undefined | S(_) => e
-        case Print(e1) => Print(ren(env, e1))
-
-        case Unary(uop, e1) => ???
-        case Binary(bop, e1, e2) => ???
-        case If(e1, e2, e3) => ???
-
-        case Var(y) =>
-          ???
-        case Decl(mode, y, e1, e2) =>
-          val yp = fresh(y)
-          ???
-
-        case Function(p, params, retty, e1) => {
-          val (pp, envp): (Option[String], Map[String,String]) = p match {
-            case None => ???
-            case Some(x) => ???
-          }
-          val (paramsp, envpp) = params.foldRight( (Nil: List[(String,MTyp)], envp) ) {
-            ???
-          }
-          ???
-        }
-
-        case Call(e1, args) => ???
-
-        case Obj(fields) => ???
-        case GetField(e1, f) => ???
-      }
-    }
-    ren(empty, e)
+    subst(e) // change this line when you implement capture-avoidance
   }
 
   /* Check whether or not an expression is reduced enough to be applied given a mode. */
@@ -239,6 +244,7 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
     case MName => ???
   }
 
+  /* A small-step transition. */
   def step(e: Expr): Expr = {
     require(!isValue(e), s"step: e ${e} to step is a value")
     e match {
@@ -295,6 +301,6 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
   /* External Interfaces */
   
   //this.debug = true // uncomment this if you want to print debugging information
+  this.maxSteps = Some(1000) // comment this out or set to None to not bound the number of steps.
   this.keepGoing = true // comment this out if you want to stop at first exception when processing a file
 }
-
