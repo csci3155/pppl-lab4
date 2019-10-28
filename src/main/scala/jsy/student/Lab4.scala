@@ -238,7 +238,7 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
     subst(e) // change this line when you implement capture-avoidance
   }
 
-  /* Check whether or not an expression is reduced enough to be applied given a mode. */
+  /* Check whether or not an expression is reducible given a mode. */
   def isRedex(mode: Mode, e: Expr): Boolean = mode match {
     case MConst => ???
     case MName => ???

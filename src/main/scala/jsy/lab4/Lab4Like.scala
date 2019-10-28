@@ -84,6 +84,7 @@ trait Lab4Like { a: JsyApplication =>
 
   // Interface for main
   def processFile(file: java.io.File) {
+    val debug = true
     if (debug) {
       println("# ============================================================")
       println("# File: " + file.getName)
