@@ -4,8 +4,9 @@ import jsy.lab4.Lab4Like
 import jsy.lab4.ast._
 import jsy.tester.JavascriptyTester
 import org.scalatest._
+import flatspec._
 
-class Lab4Spec(lab4: Lab4Like) extends FlatSpec {
+class Lab4Spec(lab4: Lab4Like) extends AnyFlatSpec {
   import lab4._
 
   /***** Higher-Function Exercises Tests *****/
@@ -62,7 +63,3 @@ class Lab4SpecRunner extends Lab4Spec(jsy.student.Lab4)
 // The test expects a corresponding .ans file with the expected result.
 class Lab4JsyTests extends JavascriptyTester(None, "lab4", jsy.student.Lab4)
 
-class Lab4Suite extends Suites(
-  new Lab4SpecRunner,
-  new Lab4JsyTests
-)

@@ -83,8 +83,7 @@ trait Lab4Like { a: JsyApplication =>
   def iterateStep(s: String): Expr = iterateStep(parse(s))
 
   // Interface for main
-  def processFile(file: java.io.File) {
-    val debug = true
+  def processFile(file: java.io.File): Unit = {
     if (debug) {
       println("# ============================================================")
       println("# File: " + file.getName)
