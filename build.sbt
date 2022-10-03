@@ -31,9 +31,10 @@ lazy val commonSettings = Seq(
   // set logging to show only errors during runs
   run / logLevel := Level.Error,
   runMain / logLevel := Level.Error,
+  Global / excludeLintKeys += logLevel,
 
   // JVM arguments: 8G heap size, 2M stack size
-  Test / javaOptions += "-Xmx8G -Xss2M",
+  // Test / javaOptions += "-Xmx8G -Xss2M",
 
   // scoverage options: always build with coverage
   //coverageEnabled := true,
