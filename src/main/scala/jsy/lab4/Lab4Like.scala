@@ -76,6 +76,9 @@ trait Lab4Like { a: JsyApplication =>
     v
   }
 
+  /** Interface to type check from a string. This is convenient for unit testing. */
+  def inferType(s: String): Typ = inferType(parse(s))
+
   /** Interface to take a small-step from a string. This is convenient for unit testing. */
   def oneStep(s: String): Expr = step(parse(s))
 
@@ -83,8 +86,7 @@ trait Lab4Like { a: JsyApplication =>
   def iterateStep(s: String): Expr = iterateStep(parse(s))
 
   // Interface for main
-  def processFile(file: java.io.File) {
-    val debug = true
+  def processFile(file: java.io.File): Unit = {
     if (debug) {
       println("# ============================================================")
       println("# File: " + file.getName)

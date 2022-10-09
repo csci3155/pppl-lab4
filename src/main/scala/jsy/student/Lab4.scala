@@ -235,10 +235,10 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
     val fvs = freeVars(???)
     def fresh(x: String): String = if (???) fresh(x + "$") else x
 
-    subst(e) // change this line when you implement capture-avoidance
+    subst(e) // change this line if/when you implement capture-avoidance for call-by-name
   }
 
-  /* Check whether or not an expression is reducible given a mode. */
+  /* Helper function for implementing call-by-name: check whether or not an expression is reduced enough to be applied given a mode. */
   def isRedex(mode: Mode, e: Expr): Boolean = mode match {
     case MConst => ???
     case MName => ???
@@ -291,7 +291,7 @@ object Lab4 extends jsy.util.JsyApplication with Lab4Like {
        *
        * Tip: you might want to first develop by comment out the following line to see which
        * cases you have missing. You then uncomment this line when you are sure all the cases
-       * that you have left the ones that should be stuck.
+       * that you have left are ones that should be stuck.
        */
       case _ => throw StuckError(e)
     }
