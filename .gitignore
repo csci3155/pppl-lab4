@@ -1,4 +1,7 @@
+# sbt
 target/
+project/target/*
+project/project/*
 .ivy2
 .sbt
 
@@ -11,5 +14,11 @@ target/
 # Metals
 .metals
 .bloop
-project/**/metals.sbt
+metals.sbt
 .bsp
+
+# Ammonite
+.ammonite
+
+# macOS
+.DS_Store

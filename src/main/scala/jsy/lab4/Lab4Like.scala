@@ -76,6 +76,9 @@ trait Lab4Like { a: JsyApplication =>
     v
   }
 
+  /** Interface to type check from a string. This is convenient for unit testing. */
+  def inferType(s: String): Typ = inferType(parse(s))
+
   /** Interface to take a small-step from a string. This is convenient for unit testing. */
   def oneStep(s: String): Expr = step(parse(s))
 
