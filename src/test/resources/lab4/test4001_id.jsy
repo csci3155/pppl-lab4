@@ -1,1 +1,1 @@
-function(x: number) { return x } (4)
+function(x: number) {return x } (4)

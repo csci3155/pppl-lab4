@@ -5,17 +5,14 @@
  * interactively with your implementations in Lab4.scala.
  */
 
-// Imports the parse function from jsy.lab4.Parser
-import jsy.lab4.Parser.{parse,parseFile}
+// Imports the parse function from jsy.lab3.Parser
+import jsy.lab4.Parser.{parse, parseFile}
 
 // Imports the ast nodes
 import jsy.lab4.ast._
 
 // Imports all of the functions form jsy.student.Lab4 (your implementations in Lab4.scala)
-import jsy.student.Lab4._
-
-// Try compressRec
-//val cr1 = compressRec(List(1, 2, 2, 3, 3, 3))
+import jsy.lab4.Lab4._
 
 // Parse functions with possibly multiple parameters and type annotations.
 parse("function fst(x: number, y: number): number { return x }")
@@ -32,10 +29,10 @@ parse("x.f")
 
 // Run your small-step interpreter
 // - iterateStep calls your iterate and your step
-//iterateStep("1 + 2");
+//iterateStep("1 + 2")
 
 // Parse the JavaScripty expression in your worksheet
-val worksheetJsy = parseFile("src/main/scala/jsy/student/Lab4.worksheet.ts")
+val worksheetJsy = parseFile("src/main/scala/jsy/lab4/Lab4.worksheet.ts")
 
 // Interpret the JavaScripty expression in your worksheet
 //inferType(worksheetJsy)
