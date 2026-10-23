@@ -1,8 +1,8 @@
 package jsy.tester
 import java.io.File
 import jsy.util.JsyApplication
-import org.scalatest._
-import flatspec._
+import org.scalatest.*
+import flatspec.*
 
 /*
  * A ScalaTest interface for running system tests.

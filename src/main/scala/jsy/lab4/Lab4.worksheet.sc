@@ -9,10 +9,10 @@
 import jsy.lab4.Parser.{parse, parseFile}
 
 // Imports the ast nodes
-import jsy.lab4.ast._
+import jsy.lab4.ast.*
 
 // Imports all of the functions form jsy.student.Lab4 (your implementations in Lab4.scala)
-import jsy.lab4.Lab4._
+import jsy.lab4.Lab4.*
 
 // Parse functions with possibly multiple parameters and type annotations.
 parse("function fst(x: number, y: number): number { return x }")
