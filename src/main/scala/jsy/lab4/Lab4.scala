@@ -1,7 +1,7 @@
 package jsy.lab4
 
 object Lab4 extends jsy.util.JsyApplication {
-  import ast._
+  import ast.*
 
   /*
    * CSCI 3155: Lab 4

@@ -2,8 +2,8 @@ package jsy.lab4
 
 import org.scalatest.flatspec.AnyFlatSpec
 import Parser.parse
-import ast._
-import Lab4._
+import ast.*
+import Lab4.*
 
 class Lab4StudentSpec extends AnyFlatSpec {
 }
@@ -118,7 +118,7 @@ class Lab4Spec extends AnyFlatSpec {
         ("2", "const x = 2; x"),
         ("3 + 3 + 4 + 5", "1 + 2 + 3 + 4 + 5"),
         ("3", "(function (x: number) { return x })(3)"),
-        ("3 + 1", "(function (x: number) { return x })(3 + 1)")
+        ("(function (x: number) { return x })(4)", "(function (x: number) { return x })(3 + 1)")
       )) {
         assertResult(parse(r)){oneStep(s)}
       }

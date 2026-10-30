@@ -156,7 +156,7 @@ object options {
 Usage: %s [options] %s
         
 """.format(program, anonName) +
-optline(anonName, anonDesc) + """
+      optline(anonName, anonDesc) + """
 Options:
 """
 
